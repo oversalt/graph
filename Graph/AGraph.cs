@@ -255,11 +255,11 @@ namespace Graph
                         proposedDistance = current's distance + edge's distance
                         if w's distance > proposedDistance
                             w's distance <-- proposedDistance
-                            w's previous <-- cu=rrent
+                            w's previous <-- current
                             pq enqueue w
             return BuildGraph(endVertex, vTable)
              */
-            VertexData vd;
+            VertexData vd = null;
 
             while(!pq.IsEmpty())
             {
@@ -272,19 +272,22 @@ namespace Graph
                         //Getting the distance of the item
                         double wDistance = GetEdge(vd.vVertex.Data, item.Data).Weight;
                         //Creating the VertexData object
-                        VertexData w = new VertexData(item, wDistance, null);
+                        VertexData w = vTable[item.Index];
                         double proposedDistance = wDistance + vd.Distance;
 
-                        if (wDistance > proposedDistance)
+                        if (w.Distance > proposedDistance)
                         {
                             w.Distance = proposedDistance;
                             w.vPrevious = vd.vVertex;
                             pq.Enqueue(w);
+                            //Only enqueue it when it's been upgraded
+
                         }
                     }
                 }
             }
-            return BuildGraph(vTable[vTable.Count()-1].vVertex, vTable);
+            int iEndIndex = GetVertex(end).Index;
+            return BuildGraph(vTable[iEndIndex].vVertex, vTable);
         }
 
         private IGraph<T> BuildGraph(Vertex<T> vEnd, VertexData[] vTable)
@@ -302,18 +305,16 @@ namespace Graph
                 previous <-- dataLast
              */
             result.AddVertex(vEnd.Data);
-            int i = Array.IndexOf(vTable, new VertexData(vEnd, Double.PositiveInfinity, null));
-            T dataLast = vTable[i].vVertex.Data;
-            Vertex<T> previous = vTable[i].vPrevious;
+            VertexData dataLast = vTable[vEnd.Index];
+            Vertex<T> previous = dataLast.vPrevious;
             while(previous != null)
             {
                 result.AddVertex(previous.Data);
-                result.AddEdge(dataLast, previous.Data);
-                dataLast = vTable[Array.IndexOf(vTable, new VertexData(previous, double.PositiveInfinity, null))].vVertex.Data;
-                previous = vTable[Array.IndexOf(vTable, new VertexData(previous, double.PositiveInfinity, null))].vPrevious;
+                result.AddEdge(dataLast.vVertex.Data, previous.Data);
+                dataLast = vTable[previous.Index];
+                previous = dataLast.vPrevious;
             }
             return result;
-
         }
 
         internal class PriorityQueue
@@ -377,11 +378,6 @@ namespace Graph
             public int CompareTo(object obj)
             {
                 return this.Distance.CompareTo((((VertexData)obj)).Distance);
-            }
-
-            public override bool Equals(object obj)
-            {
-                return this.vVertex == ((VertexData)obj).vVertex;
             }
         }
         #endregion
