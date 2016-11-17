@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph", "Graph\Graph.csproj", "{040CF28E-8F36-472D-97E9-20EE554A921C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphMatrix", "GraphMatrix\GraphMatrix.csproj", "{EDC77B31-0D38-42DE-B839-50868F7065DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphAdjacencyList", "GraphAdjacencyList\GraphAdjacencyList.csproj", "{EAA00263-4F6C-4B9F-AD2C-84584D847060}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{040CF28E-8F36-472D-97E9-20EE554A921C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040CF28E-8F36-472D-97E9-20EE554A921C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040CF28E-8F36-472D-97E9-20EE554A921C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040CF28E-8F36-472D-97E9-20EE554A921C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDC77B31-0D38-42DE-B839-50868F7065DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC77B31-0D38-42DE-B839-50868F7065DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC77B31-0D38-42DE-B839-50868F7065DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC77B31-0D38-42DE-B839-50868F7065DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAA00263-4F6C-4B9F-AD2C-84584D847060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA00263-4F6C-4B9F-AD2C-84584D847060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA00263-4F6C-4B9F-AD2C-84584D847060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA00263-4F6C-4B9F-AD2C-84584D847060}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
