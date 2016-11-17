@@ -267,7 +267,7 @@ namespace Graph
                 if(!vd.Known)
                 {
                     vd.Known = true;
-                    foreach (var item in EnumerateNeighbours(vd.vVertex.Data))
+                    foreach (Vertex<T> item in EnumerateNeighbours(vd.vVertex.Data))
                     {
                         //Getting the distance of the item
                         double wDistance = GetEdge(vd.vVertex.Data, item.Data).Weight;
@@ -284,7 +284,7 @@ namespace Graph
                     }
                 }
             }
-            return BuildGraph(vTable[vTable.Count()].vVertex, vTable);
+            return BuildGraph(vTable[vTable.Count()-1].vVertex, vTable);
         }
 
         private IGraph<T> BuildGraph(Vertex<T> vEnd, VertexData[] vTable)
@@ -304,7 +304,15 @@ namespace Graph
             result.AddVertex(vEnd.Data);
             int i = Array.IndexOf(vTable, new VertexData(vEnd, Double.PositiveInfinity, null));
             T dataLast = vTable[i].vVertex.Data;
-            Vertex<T> previous = vTable[i].
+            Vertex<T> previous = vTable[i].vPrevious;
+            while(previous != null)
+            {
+                result.AddVertex(previous.Data);
+                result.AddEdge(dataLast, previous.Data);
+                dataLast = vTable[Array.IndexOf(vTable, new VertexData(previous, double.PositiveInfinity, null))].vVertex.Data;
+                previous = vTable[Array.IndexOf(vTable, new VertexData(previous, double.PositiveInfinity, null))].vPrevious;
+            }
+            return result;
 
         }
 
@@ -373,7 +381,7 @@ namespace Graph
 
             public override bool Equals(object obj)
             {
-                return CompareTo(obj) == 0;
+                return this.vVertex == ((VertexData)obj).vVertex;
             }
         }
         #endregion
