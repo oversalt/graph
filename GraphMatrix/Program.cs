@@ -132,13 +132,42 @@ namespace GraphMatrix
 
         }
 
+        static void TestMinimumSpanningTree()
+        {
+            UGraphMatrix<string> uGraph = new UGraphMatrix<string>();
+            uGraph.AddVertex("Prince Albert");
+            uGraph.AddVertex("Saskatoon");
+            uGraph.AddVertex("Yorkton");
+            uGraph.AddVertex("Regina");
+            uGraph.AddVertex("Weyburn");
+            uGraph.AddVertex("Medicine Hat");
+            uGraph.AddVertex("Swift Current");
+            uGraph.AddVertex("Moose Jaw");
+            uGraph.AddEdge("Medicine Hat", "Swift Current", 1);
+            uGraph.AddEdge("Swift Current", "Moose Jaw", 2);
+            uGraph.AddEdge("Regina", "Weyburn", 2);
+            uGraph.AddEdge("Medicine Hat", "Saskatoon", 3);
+            uGraph.AddEdge("Prince Albert", "Saskatoon", 3);
+            uGraph.AddEdge("Saskatoon", "Moose Jaw", 3);
+            uGraph.AddEdge("Yorkton", "Regina", 3);
+            uGraph.AddEdge("Prince Albert", "Swift Current", 4);
+            uGraph.AddEdge("Moose Jaw", "Regina", 4);
+            uGraph.AddEdge("Saskatoon", "Yorkton", 5);
+
+            Console.WriteLine(uGraph);
+
+            Console.WriteLine(uGraph.MinimumSpanningTree());
+
+        }
+
         static void Main(string[] args)
         {
             //TestDirectedGraph();
             //TestUndirectedGraph();
             //TestUndirectedRemoveVertex();
             //TestTraversals();
-            TestShortestWeightedPath();
+            //TestShortestWeightedPath();
+            TestMinimumSpanningTree();
         }
     }
 }
