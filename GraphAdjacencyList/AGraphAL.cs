@@ -21,7 +21,13 @@ namespace GraphAdjacencyList
 
         public override IEnumerable<Vertex<T>> EnumerateNeighbours(T data)
         {
-            
+            List<Vertex<T>> neighbours = new List<Vertex<T>>();
+
+            foreach(var edge in listListEdges[GetVertex(data).Index])
+            {
+                neighbours.Add(edge.To);
+            }
+            return neighbours;
         }
 
         public override Edge<T> GetEdge(T from, T to)
@@ -31,7 +37,7 @@ namespace GraphAdjacencyList
                 throw new ApplicationException("No edge exists");
             }
 
-            return listListEdges.;
+            return listListEdges[GetVertex(from).Index][GetVertex(to).Index];
         }
 
         public override bool HasEdge(T from, T to)
@@ -49,7 +55,15 @@ namespace GraphAdjacencyList
 
         public override void RemoveEdge(T from, T to)
         {
-            throw new NotImplementedException();
+            if(HasEdge(from, to))
+            {
+                listListEdges[GetVertex(from).Index].Remove(GetEdge(from, to));
+                numEdges--;
+            }
+            else
+            {
+                throw new ApplicationException("Graph doesn't contain that edge.");
+            }
         }
 
         protected override void AddEdge(Edge<T> e)
@@ -73,12 +87,38 @@ namespace GraphAdjacencyList
 
         protected override Edge<T>[] GetAllEdges()
         {
-            throw new NotImplementedException();
+            List<Edge<T>> eArray = new List<Edge<T>>();
+            foreach (var lEdge in listListEdges)
+            {
+                foreach(var e in lEdge)
+                {
+                    eArray.Add(e);
+                }
+            }
+            return eArray.ToArray();
         }
 
         protected override void RemoveVertexAdjustEdges(Vertex<T> v)
         {
-            throw new NotImplementedException();
+            numEdges = 0;
+
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                if(i != v.Index)
+                {
+                    for(int x = 0; x < vertices.Count; x++)
+                    {
+                        if (listListEdges[i][x].From.CompareTo(v) == 0 || listListEdges[i][x].To.CompareTo(v) == 0)
+                        {
+                            listListEdges[i].RemoveAt(x);   //Removing any edges that might exist with the vertex
+                        }
+                    }
+                }
+                else
+                {
+                    listListEdges.RemoveAt(i);  //Removing the list of edges at the vertex's index
+                }
+            }
         }
 
         public override string ToString()
