@@ -41,7 +41,7 @@ namespace GraphAdjacencyList
             {
                 if(e.To.Data.CompareTo(to) == 0)
                 {
-                    return e;
+                    return e; //Could probably use indexOf and catch an exception...
                 }
             }
 
