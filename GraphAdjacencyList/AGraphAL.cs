@@ -37,7 +37,15 @@ namespace GraphAdjacencyList
                 throw new ApplicationException("No edge exists");
             }
 
-            return listListEdges[GetVertex(from).Index][GetVertex(to).Index];
+            foreach(var e in listListEdges[GetVertex(from).Index])
+            {
+                if(e.To.Data.CompareTo(to) == 0)
+                {
+                    return e;
+                }
+            }
+
+            throw new ApplicationException("Does not contain that edge");
         }
 
         public override bool HasEdge(T from, T to)
