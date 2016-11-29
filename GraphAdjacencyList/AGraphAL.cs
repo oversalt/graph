@@ -109,22 +109,27 @@ namespace GraphAdjacencyList
         protected override void RemoveVertexAdjustEdges(Vertex<T> v)
         {
             numEdges = 0;
+            //Reference to old list of lists of edges of generic type T
+            List<List<Edge<T>>> oldList = listListEdges;
+            //New list of lists of edges of generic type T
+            listListEdges = new List<List<Edge<T>>>();
 
-            for (int i = 0; i < vertices.Count; i++)
+            for (int i = 0; i < oldList.Count - 1; i++)
             {
-                if(i != v.Index)
+                listListEdges.Add(new List<Edge<T>>());
+            }
+
+            foreach(List<Edge<T>> l in oldList)
+            {
+                if(v.Index != oldList.IndexOf(l))
                 {
-                    for(int x = 0; x < vertices.Count; x++)
+                    foreach(Edge<T> e in l)
                     {
-                        if (listListEdges[i][x].From.CompareTo(v) == 0 || listListEdges[i][x].To.CompareTo(v) == 0)
+                        if(e.To.Data.CompareTo(v.Data) != 0)
                         {
-                            listListEdges[i].RemoveAt(x);   //Removing any edges that might exist with the vertex
+                            AddEdge(e);
                         }
                     }
-                }
-                else
-                {
-                    listListEdges.RemoveAt(i);  //Removing the list of edges at the vertex's index
                 }
             }
         }

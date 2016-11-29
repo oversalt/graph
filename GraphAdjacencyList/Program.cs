@@ -35,9 +35,29 @@ namespace GraphAdjacencyList
             //}
         }
 
+        static void TestUndirectedRemoveVertex()
+        {
+            UGraphAL<string> uGraph = new UGraphAL<string>();
+            uGraph.AddVertex("Saskatoon");
+            uGraph.AddVertex("Moose Jaw");
+            uGraph.AddVertex("Regina");
+            uGraph.AddEdge("Saskatoon", "Moose Jaw", 235);
+            uGraph.AddEdge("Saskatoon", "Regina", 250);
+            uGraph.AddEdge("Regina", "Moose Jaw", 70);
+            Console.WriteLine(uGraph);
+
+            Console.WriteLine(uGraph.GetEdge("Saskatoon", "Moose Jaw"));
+
+            Console.WriteLine(uGraph);
+            Console.WriteLine(uGraph.NumEdges);
+        }
+        
+
+
         static void Main(string[] args)
         {
-            TestDirectedGraph();
+            //TestDirectedGraph();
+            TestUndirectedRemoveVertex();
         }
     }
 }

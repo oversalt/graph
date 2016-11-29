@@ -73,7 +73,8 @@ namespace Graph
 
         public int CompareTo(Edge<T> other)
         {
-            int result = Weight.CompareTo(other.Weight);
+            //int result = Weight.CompareTo(other.Weight);
+            int result = 0;
             //What if the edges have the same weight
             if(result == 0)
             {

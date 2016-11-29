@@ -129,7 +129,6 @@ namespace GraphMatrix
             Console.WriteLine(uGraph);
 
             Console.WriteLine(uGraph.ShortestWeightedPath("Weyburn", "Prince Albert"));
-
         }
 
         static void TestMinimumSpanningTree()

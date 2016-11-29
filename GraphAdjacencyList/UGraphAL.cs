@@ -24,6 +24,7 @@ namespace GraphAdjacencyList
             }
         }
 
+
         public override void AddEdge(T from, T to)
         {
             //Add two edges A --> B and B --> A
