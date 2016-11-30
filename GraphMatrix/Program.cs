@@ -16,29 +16,36 @@ namespace GraphMatrix
 
         static void TestTraversals()
         {
-            UGraphMatrix<string> uGraph = new UGraphMatrix<string>();
-            uGraph.AddVertex("PA");
-            uGraph.AddVertex("Saskatoon");
-            uGraph.AddVertex("Regina");
-            uGraph.AddVertex("Weyburn");
-            uGraph.AddVertex("Estevan");
-            uGraph.AddVertex("MJ");
-            uGraph.AddVertex("Yorkton");
-            uGraph.AddVertex("Swift");
+            DGraphMatrix<string> uGraph = new DGraphMatrix<string>();
+            uGraph.AddVertex("A");
+            uGraph.AddVertex("B");
+            uGraph.AddVertex("C");
+            uGraph.AddVertex("D");
+            uGraph.AddVertex("E");
+            uGraph.AddVertex("F");
+            uGraph.AddVertex("G");
+            uGraph.AddVertex("H");
+            uGraph.AddVertex("I");
 
-            uGraph.AddEdge("PA", "Saskatoon", 141);
-            uGraph.AddEdge("Saskatoon", "MJ", 220);
-            uGraph.AddEdge("Saskatoon", "Yorkton", 328);
-            uGraph.AddEdge("Yorkton", "Regina", 187);
-            uGraph.AddEdge("Swift", "MJ", 190);
-            uGraph.AddEdge("MJ", "Regina", 72);
-            uGraph.AddEdge("Regina", "Weyburn", 115);
-            uGraph.AddEdge("Weyburn", "Estevan", 86);
+            uGraph.AddEdge("A","B");
+            uGraph.AddEdge("A","D");
+            uGraph.AddEdge("A","E");
+            uGraph.AddEdge("B","E");
+            uGraph.AddEdge("C","B");
+            uGraph.AddEdge("D","G"); 
+            uGraph.AddEdge("E","F");
+            uGraph.AddEdge("E","H");
+            uGraph.AddEdge("F","C");
+            uGraph.AddEdge("F","H");
+            uGraph.AddEdge("G","H");
+            uGraph.AddEdge("H","I");
+            uGraph.AddEdge("I","F");
+
 
             Console.WriteLine("Depth First:");
-            uGraph.DepthFirstTraversal("PA", whatToDo);
+            uGraph.DepthFirstTraversal("A", whatToDo);
             Console.WriteLine("\nBreadth First:");
-            uGraph.BreadthFirstTraversal("PA", whatToDo);
+            uGraph.BreadthFirstTraversal("B", whatToDo);
         }
 
 
@@ -164,9 +171,9 @@ namespace GraphMatrix
             //TestDirectedGraph();
             //TestUndirectedGraph();
             //TestUndirectedRemoveVertex();
-            //TestTraversals();
+            TestTraversals();
             //TestShortestWeightedPath();
-            TestMinimumSpanningTree();
+            //TestMinimumSpanningTree();
         }
     }
 }
